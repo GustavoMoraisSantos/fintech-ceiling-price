@@ -37,15 +37,15 @@ Open [http://localhost:3000](http://localhost:3000).
 Create a `.env.local` file:
 
 ```env
-BRAPI_TOKEN=your_brapi_token_here
+BRAPI_API_KEY=your_brapi_token_here
 ```
 
-A brapi.dev token is optional for basic usage but recommended for higher rate limits. Get one at [brapi.dev](https://brapi.dev).
+A brapi.dev token is optional for basic usage (free tickers: PETR4, MGLU3, VALE3, ITUB4) but required for all other stocks. Get one at [brapi.dev/dashboard](https://brapi.dev/dashboard).
 
 ## Tech Stack
 
 - [Next.js](https://nextjs.org) (App Router)
 - [TypeScript](https://www.typescriptlang.org)
 - [Tailwind CSS](https://tailwindcss.com)
-- [brapi.dev API](https://brapi.dev)
+- [brapi SDK](https://www.npmjs.com/package/brapi) (official TypeScript SDK)
 - localStorage for data persistence
