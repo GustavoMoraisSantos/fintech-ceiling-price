@@ -1,0 +1,46 @@
+{
+  "header": {
+    "title": "Ceiling Price",
+    "subtitle": "Barsi Method",
+    "refreshAll": "Refresh All",
+    "updating": "Updating...",
+    "addStock": "Add Stock"
+  },
+  "dashboard": {
+    "trackedStocks": "Tracked Stocks",
+    "belowCeiling": "Below Ceiling (Buy)",
+    "avgDividendYield": "Avg Dividend Yield"
+  },
+  "table": {
+    "stock": "Stock",
+    "currentPrice": "Current Price",
+    "ceilingPrice": "Ceiling Price",
+    "status": "Status",
+    "avgAnnualDiv": "Avg Annual Div",
+    "dy": "DY",
+    "targetDy": "Target DY",
+    "updated": "Updated",
+    "actions": "Actions",
+    "noStocks": "No stocks added yet",
+    "emptyMessage": "Click \"Add Stock\" to search for B3 stocks and calculate their ceiling price using the Barsi method.",
+    "buy": "Buy",
+    "wait": "Wait",
+    "refresh": "Refresh",
+    "remove": "Remove"
+  },
+  "modal": {
+    "title": "Add Stock",
+    "targetYield": "Target Dividend Yield (%)",
+    "searchPlaceholder": "Search B3 Stock Code",
+    "searchExample": "e.g. BBAS3, PETR4, VALE3...",
+    "searching": "Searching...",
+    "loading": "Loading stock data and calculating ceiling price...",
+    "searchFailed": "Search failed",
+    "searchError": "Failed to search stocks. Try again.",
+    "unknownError": "Unknown error"
+  },
+  "errors": {
+    "fetchFailed": "Failed to fetch",
+    "noDataFound": "No data found for"
+  }
+}

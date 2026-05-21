@@ -1,0 +1,46 @@
+{
+  "header": {
+    "title": "Preço Teto",
+    "subtitle": "Método Barsi",
+    "refreshAll": "Atualizar Tudo",
+    "updating": "Atualizando...",
+    "addStock": "Adicionar Ação"
+  },
+  "dashboard": {
+    "trackedStocks": "Ações Rastreadas",
+    "belowCeiling": "Abaixo do Teto (Comprar)",
+    "avgDividendYield": "Rendimento de Dividendo Médio"
+  },
+  "table": {
+    "stock": "Ação",
+    "currentPrice": "Preço Atual",
+    "ceilingPrice": "Preço Teto",
+    "status": "Status",
+    "avgAnnualDiv": "Div. Anual Média",
+    "dy": "DY",
+    "targetDy": "DY Alvo",
+    "updated": "Atualizado",
+    "actions": "Ações",
+    "noStocks": "Nenhuma ação adicionada ainda",
+    "emptyMessage": "Clique em \"Adicionar Ação\" para pesquisar ações B3 e calcular seu preço teto usando o método Barsi.",
+    "buy": "Comprar",
+    "wait": "Esperar",
+    "refresh": "Atualizar",
+    "remove": "Remover"
+  },
+  "modal": {
+    "title": "Adicionar Ação",
+    "targetYield": "Rendimento de Dividendo Alvo (%)",
+    "searchPlaceholder": "Pesquisar Código de Ação B3",
+    "searchExample": "ex: BBAS3, PETR4, VALE3...",
+    "searching": "Pesquisando...",
+    "loading": "Carregando dados da ação e calculando preço teto...",
+    "searchFailed": "Busca falhou",
+    "searchError": "Falha ao pesquisar ações. Tente novamente.",
+    "unknownError": "Erro desconhecido"
+  },
+  "errors": {
+    "fetchFailed": "Falha ao buscar",
+    "noDataFound": "Nenhum dado encontrado para"
+  }
+}

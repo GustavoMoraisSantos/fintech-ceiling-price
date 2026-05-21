@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { StockEntry, BrapiQuoteResponse } from "@/types/stock";
 import { calculateCeilingPrice } from "@/lib/ceiling-price";
 import { getStoredStocks, addStock, removeStock as removeStoredStock } from "@/lib/storage";
@@ -8,17 +8,17 @@ import Header from "./Header";
 import StockTable from "./StockTable";
 import AddStockModal from "./AddStockModal";
 
-function loadStocks(): StockEntry[] {
-  if (typeof window === "undefined") return [];
-  return getStoredStocks();
-}
-
 export default function Dashboard() {
-  const [stocks, setStocks] = useState<StockEntry[]>(loadStocks);
+  const [stocks, setStocks] = useState<StockEntry[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalKey, setModalKey] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [refreshingTicker, setRefreshingTicker] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Load stocks from localStorage only on client
+    setStocks(getStoredStocks());
+  }, []);
 
   const handleAddStock = useCallback((stock: StockEntry) => {
     const updated = addStock(stock);

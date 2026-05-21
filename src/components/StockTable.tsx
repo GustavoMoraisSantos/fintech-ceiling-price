@@ -120,7 +120,7 @@ export default function StockTable({
                     <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                       {stock.ticker}
                     </p>
-                    <p className="max-w-[200px] truncate text-xs text-zinc-500 dark:text-zinc-400">
+                    <p className="max-w-50 truncate text-xs text-zinc-500 dark:text-zinc-400">
                       {stock.shortName}
                     </p>
                   </div>
