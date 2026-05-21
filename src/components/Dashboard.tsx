@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useSyncExternalStore } from "react";
+import { useState, useCallback } from "react";
 import { StockEntry, BrapiQuoteResponse } from "@/types/stock";
 import { calculateCeilingPrice } from "@/lib/ceiling-price";
 import { getStoredStocks, addStock, removeStock as removeStoredStock } from "@/lib/storage";
@@ -8,29 +8,27 @@ import Header from "./Header";
 import StockTable from "./StockTable";
 import AddStockModal from "./AddStockModal";
 
-const emptyStocks: StockEntry[] = [];
-function subscribeToStorage(callback: () => void) {
-  window.addEventListener("storage", callback);
-  return () => window.removeEventListener("storage", callback);
+function loadStocks(): StockEntry[] {
+  if (typeof window === "undefined") return [];
+  return getStoredStocks();
 }
 
 export default function Dashboard() {
-  const stocks = useSyncExternalStore(subscribeToStorage, getStoredStocks, () => emptyStocks);
+  const [stocks, setStocks] = useState<StockEntry[]>(loadStocks);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalKey, setModalKey] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [refreshingTicker, setRefreshingTicker] = useState<string | null>(null);
-  const [, forceUpdate] = useState(0);
 
   const handleAddStock = useCallback((stock: StockEntry) => {
-    addStock(stock);
-    forceUpdate((n) => n + 1);
-  }, [forceUpdate]);
+    const updated = addStock(stock);
+    setStocks(updated);
+  }, []);
 
   const handleRemoveStock = useCallback((ticker: string) => {
-    removeStoredStock(ticker);
-    forceUpdate((n) => n + 1);
-  }, [forceUpdate]);
+    const updated = removeStoredStock(ticker);
+    setStocks(updated);
+  }, []);
 
   const refreshStock = useCallback(async (ticker: string, targetYield: number) => {
     const res = await fetch(`/api/stocks/${encodeURIComponent(ticker)}`);
@@ -69,8 +67,8 @@ export default function Dashboard() {
         const stock = stocks.find((s) => s.ticker === ticker);
         if (!stock) return;
         const updated = await refreshStock(ticker, stock.targetYield);
-        addStock(updated);
-        forceUpdate((n) => n + 1);
+        const newStocks = addStock(updated);
+        setStocks(newStocks);
       } catch (err) {
         console.error("Refresh failed:", err);
       } finally {
@@ -91,7 +89,7 @@ export default function Dashboard() {
           console.error(`Failed to refresh ${stock.ticker}:`, err);
         }
       }
-      forceUpdate((n) => n + 1);
+      setStocks(getStoredStocks());
     } finally {
       setIsRefreshing(false);
     }
